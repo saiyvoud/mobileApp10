@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:mobileapp/view/Banner.dart';
-import 'package:mobileapp/view/GridView.dart';
-import 'package:mobileapp/view/ListView.dart';
-import 'package:mobileapp/view/Stack.dart';
-import 'package:mobileapp/view/imagePicker.dart';
+import 'package:mobileapp/provider/auth_provider.dart';
+
+import 'package:mobileapp/view/FormLogin.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MultiProvider(providers: [
+    ChangeNotifierProvider(create: (_) => AuthProvider()),
+  ], child: const MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -14,10 +15,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: ImagePickerWidget()
-     
-    );
+    return MaterialApp(debugShowCheckedModeBanner: false, home: FormLogin());
   }
 }

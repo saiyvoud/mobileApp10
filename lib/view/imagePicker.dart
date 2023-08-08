@@ -96,6 +96,7 @@ class _ImagePickerWidgetState extends State<ImagePickerWidget> {
           SizedBox(width: 20),
         ],
       ),
+      
       body: Column(
         children: [
           SizedBox(height: 50),
