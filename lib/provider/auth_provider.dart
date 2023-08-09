@@ -10,10 +10,10 @@ class AuthProvider extends ChangeNotifier {
   final formKey = GlobalKey<FormState>();
   AuthService authService = AuthService();
   UserModel _userModel = UserModel();
-  bool _loading = false;
-  bool _success = false;
-   get loading => _loading;
-   get success => _success;
+  bool? _loading;
+  bool? _success;
+  get loading => _loading;
+  get success => _success;
   UserModel get userModel => _userModel;
 
   Future<void> login() async {
@@ -31,8 +31,8 @@ class AuthProvider extends ChangeNotifier {
       _success = true;
       notifyListeners();
     } else {
-      _loading = false;
       _success = false;
+      _loading = false;
       notifyListeners();
     }
   }

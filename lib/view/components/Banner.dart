@@ -1,6 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:mobileapp/view/Table.dart';
+import 'package:mobileapp/view/components/Table.dart';
 import 'package:mobileapp/view/components/data.dart';
 
 class BannerWidget extends StatefulWidget {
