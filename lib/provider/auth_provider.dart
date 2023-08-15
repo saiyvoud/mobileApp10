@@ -6,13 +6,17 @@ class AuthProvider extends ChangeNotifier {
   TextEditingController username = TextEditingController();
   TextEditingController email = TextEditingController();
   TextEditingController password = TextEditingController();
+  TextEditingController comfirmPassword = TextEditingController();
   TextEditingController phone = TextEditingController();
   final formKey = GlobalKey<FormState>();
+  final formKeyRegister = GlobalKey<FormState>();
   AuthService authService = AuthService();
   UserModel _userModel = UserModel();
   bool? _loading;
+  bool? _loadingRegister;
   bool? _success;
   get loading => _loading;
+  get loadingRegister => _loadingRegister;
   get success => _success;
   UserModel get userModel => _userModel;
 
@@ -20,10 +24,8 @@ class AuthProvider extends ChangeNotifier {
     _loading = true;
     notifyListeners();
     final result = await authService.login(
-      username: username.text,
       password: password.text,
       email: email.text,
-      phone: phone.text,
     );
     if (result != null) {
       _userModel = result;
@@ -33,6 +35,27 @@ class AuthProvider extends ChangeNotifier {
     } else {
       _success = false;
       _loading = false;
+      notifyListeners();
+    }
+  }
+
+  Future<void> register() async {
+    _loadingRegister = true;
+    notifyListeners();
+    final result = await authService.register(
+      username: username.text,
+      password: password.text,
+      email: email.text,
+      phone: phone.text,
+    );
+    if (result != null) {
+      _userModel = result;
+      _success = true;
+      _loadingRegister = false;
+      notifyListeners();
+    } else {
+      _success = false;
+      _loadingRegister = false;
       notifyListeners();
     }
   }

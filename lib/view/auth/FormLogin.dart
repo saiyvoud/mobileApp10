@@ -2,6 +2,7 @@ import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:mobileapp/provider/auth_provider.dart';
 import 'package:mobileapp/view/auth/Formregister.dart';
+import 'package:mobileapp/view/components/bottombar.dart';
 import 'package:provider/provider.dart';
 
 class FormLogin extends StatefulWidget {
@@ -130,6 +131,12 @@ class _FormLoginState extends State<FormLogin> {
                                   btnCancelOnPress: () {},
                                   btnOkOnPress: () {},
                                 )..show();
+                                Navigator.pushAndRemoveUntil(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            BottomBarWidget()),
+                                    (route) => false);
                               } else {
                                 AwesomeDialog(
                                   context: context,
