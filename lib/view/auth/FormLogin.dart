@@ -120,23 +120,23 @@ class _FormLoginState extends State<FormLogin> {
                                   (states) => Colors.green)),
                           onPressed: () async {
                             if (auth.formKey.currentState!.validate()) {
-                              auth.login();
+                              await auth.login();
                               if (auth.success == true) {
-                                AwesomeDialog(
-                                  context: context,
-                                  dialogType: DialogType.success,
-                                  animType: AnimType.bottomSlide,
-                                  title: 'ສຳເລັດ',
-                                  desc: 'ເຂົ້າສູ່ລະບົບສຳເລັດ',
-                                  btnCancelOnPress: () {},
-                                  btnOkOnPress: () {},
-                                )..show();
                                 Navigator.pushAndRemoveUntil(
                                     context,
                                     MaterialPageRoute(
                                         builder: (context) =>
                                             BottomBarWidget()),
                                     (route) => false);
+                                // AwesomeDialog(
+                                //   context: context,
+                                //   dialogType: DialogType.success,
+                                //   animType: AnimType.bottomSlide,
+                                //   title: 'ສຳເລັດ',
+                                //   desc: 'ເຂົ້າສູ່ລະບົບສຳເລັດ',
+                                //   btnCancelOnPress: () {},
+                                //   btnOkOnPress: () {},
+                                // )..show();
                               } else {
                                 AwesomeDialog(
                                   context: context,

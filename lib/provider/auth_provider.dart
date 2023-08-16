@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
 import 'package:mobileapp/model/user_model.dart';
 import 'package:mobileapp/service/auth_service.dart';
 
@@ -19,7 +20,7 @@ class AuthProvider extends ChangeNotifier {
   get loadingRegister => _loadingRegister;
   get success => _success;
   UserModel get userModel => _userModel;
-
+  final box =  Hive.box('user');
   Future<void> login() async {
     _loading = true;
     notifyListeners();
@@ -27,7 +28,11 @@ class AuthProvider extends ChangeNotifier {
       password: password.text,
       email: email.text,
     );
-    if (result != null) {
+
+    if (result!.id != null) {
+        await box.put('token', result.token);
+        // final token = box.get("token");
+        // print("=============>Token$token");
       _userModel = result;
       _loading = false;
       _success = true;

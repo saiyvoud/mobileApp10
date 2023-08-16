@@ -12,7 +12,7 @@ class AuthService {
     required String email,
   }) async {
     try {
-        //final box = await Hive.box('user');
+      
       final url = Uri.parse(ApiPath.loginPath);
       Map<String, String> header = {
         "Accept": "application/json",
@@ -22,9 +22,11 @@ class AuthService {
         "email": email,
       };
       final respone = await http.post(url, body: body, headers: header);
+     
       if (respone.statusCode == 200 || respone.statusCode == 201) {
+         print("==========>${respone.body}");
         var data = jsonDecode(respone.body);
-        // box.put('token', data['token']);
+    
         final UserModel user = UserModel.fromJson(data['data']);
         return user;
       }

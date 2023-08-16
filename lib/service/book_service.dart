@@ -11,7 +11,7 @@ class BookService {
   Future<List<BookModel>?> fecthBook() async {
     try {
       final url = Uri.parse(ApiPath.bookPath);
-      final token = box.get("token");
+      final token = await box.get("token");
 
       Map<String, String> header = {
         "Accept": "application/json",
