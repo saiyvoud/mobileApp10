@@ -20,7 +20,24 @@ class AuthProvider extends ChangeNotifier {
   get loadingRegister => _loadingRegister;
   get success => _success;
   UserModel get userModel => _userModel;
-  final box =  Hive.box('user');
+  final box = Hive.box('user');
+  Future<void> validateAuth() async {
+    try {
+    //await box.delete("token");
+      final token = await box.get("token");
+      await Future.delayed(Duration(seconds: 2));
+      if (token == "" || token == null) {
+        _success = false;
+        notifyListeners();
+      } else {
+        _success = true;
+        notifyListeners();
+      }
+    } catch (e) {
+      rethrow;
+    }
+  }
+
   Future<void> login() async {
     _loading = true;
     notifyListeners();
@@ -30,9 +47,9 @@ class AuthProvider extends ChangeNotifier {
     );
 
     if (result!.id != null) {
-        await box.put('token', result.token);
-        // final token = box.get("token");
-        // print("=============>Token$token");
+      await box.put('token', result.token);
+      final token = box.get("token");
+      print("=============>Token$token");
       _userModel = result;
       _loading = false;
       _success = true;
@@ -46,7 +63,7 @@ class AuthProvider extends ChangeNotifier {
 
   Future<void> register() async {
     _loadingRegister = true;
-    notifyListeners();
+    // notifyListeners();
     final result = await authService.register(
       username: username.text,
       password: password.text,
@@ -54,6 +71,9 @@ class AuthProvider extends ChangeNotifier {
       phone: phone.text,
     );
     if (result != null) {
+       await box.put('token', result.token);
+      final token = box.get("token");
+      print("=============>Token$token");
       _userModel = result;
       _success = true;
       _loadingRegister = false;

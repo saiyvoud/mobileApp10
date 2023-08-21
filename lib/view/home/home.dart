@@ -1,5 +1,6 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
+import 'package:mobileapp/view/home/home_detail.dart';
 import 'package:provider/provider.dart';
 
 import '../../provider/book_provider.dart';
@@ -93,7 +94,7 @@ class _HomePageState extends State<HomePage> {
         ),
         body: Consumer<BookProvider>(
           builder: (context, books, child) {
-            if(books.loadingBook == true){
+            if (books.loadingBook == true) {
               return Center(child: CircularProgressIndicator());
             }
             return GridView.builder(
@@ -101,114 +102,114 @@ class _HomePageState extends State<HomePage> {
                 primary: false,
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,
-                   //mainAxisExtent: 0.5,
+                    //mainAxisExtent: 0.5,
                     childAspectRatio: 0.7,
                     mainAxisSpacing: 1.2),
                 itemCount: books.books!.length,
                 itemBuilder: (context, index) {
-                  return Column(
-                    children: [
-                      Row(
-                        //mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Container(
-                            padding: EdgeInsets.symmetric(
-                                vertical: 14, horizontal: 16),
-                            height: 240,
-                            width: 168,
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(10),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.black.withOpacity(0.03),
-                                  blurRadius: 16,
-                                  offset: Offset(1, 1), // Shadow position
-                                ),
-                              ],
+                  return Padding(
+                    padding: const EdgeInsets.all(3.0),
+                    child: InkWell(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    HomeDetail(bookModel: books.books![index])));
+                      },
+                      child: Container(
+                        padding:
+                            EdgeInsets.symmetric(vertical: 14, horizontal: 16),
+                        height: 240,
+                        width: 168,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(10),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black.withOpacity(0.03),
+                              blurRadius: 16,
+                              offset: Offset(1, 1), // Shadow position
                             ),
-                            child: Column(
+                          ],
+                        ),
+                        child: Column(
+                          children: [
+                            Container(
+                                child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 Container(
-                                    child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    Container(
-                                      padding: EdgeInsets.symmetric(
-                                          vertical: 3, horizontal: 5),
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(8),
-                                        color:
-                                            Color.fromARGB(255, 178, 229, 231),
-                                      ),
-                                      child: Text(
-                                        "20% OFF",
-                                        style: TextStyle(
-                                          fontSize: 7,
-                                          fontWeight: FontWeight.w800,
-                                          color:
-                                              Color.fromARGB(255, 79, 79, 79),
-                                        ),
-                                      ),
+                                  padding: EdgeInsets.symmetric(
+                                      vertical: 3, horizontal: 5),
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(8),
+                                    color: Color.fromARGB(255, 178, 229, 231),
+                                  ),
+                                  child: Text(
+                                    "20% OFF",
+                                    style: TextStyle(
+                                      fontSize: 7,
+                                      fontWeight: FontWeight.w800,
+                                      color: Color.fromARGB(255, 79, 79, 79),
                                     ),
-                                    SizedBox(
-                                      height: 20,
-                                    ),
-                                    Container(
-                                      width: 25,
-                                      height: 25,
-                                      //color: Colors.grey[600],
-                                      child: Icon(
-                                        Icons.favorite,
-                                        size: 22,
-                                        color: Color.fromARGB(255, 239, 29, 29),
-                                      ),
-                                    )
-                                  ],
-                                )),
-                                Container(
-                                  height: 100,
-                                  color: Colors.grey[600],
-                                  child: Stack(
-                                    children: [
-                                      Image.network(
-                                        "https://wallpapercave.com/wp/wp5943533.jpg",
-                                        fit: BoxFit.contain,
-                                      ),
-                                      Positioned(
-                                        child: Image.network(
-                                          // "https://shop.kicker.de/de-de/Data/Images/Big/orange-puma-evopower-vigor-4-it-halle-kids-f03.png",
-                                          books.books![index].image!,
-                                          fit: BoxFit.contain,
-                                        ),
-                                      )
-                                    ],
                                   ),
                                 ),
                                 SizedBox(
                                   height: 20,
                                 ),
                                 Container(
-                                  alignment: Alignment.centerLeft,
-                                  child: Text(
-                                    "Shoes",
-                                    style: TextStyle(
-                                        color: Colors.grey[700],
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.w700),
+                                  width: 25,
+                                  height: 25,
+                                  //color: Colors.grey[600],
+                                  child: Icon(
+                                    Icons.favorite,
+                                    size: 22,
+                                    color: Color.fromARGB(255, 239, 29, 29),
                                   ),
-                                ),
-                                SizedBox(
-                                  height: 5,
-                                ),
+                                )
                               ],
+                            )),
+                            Container(
+                              height: 100,
+                              color: Colors.grey[600],
+                              child: Stack(
+                                children: [
+                                  Image.network(
+                                    "https://wallpapercave.com/wp/wp5943533.jpg",
+                                    fit: BoxFit.contain,
+                                  ),
+                                  Positioned(
+                                    child: Image.network(
+                                      // "https://shop.kicker.de/de-de/Data/Images/Big/orange-puma-evopower-vigor-4-it-halle-kids-f03.png",
+                                      books.books![index].image!,
+                                      fit: BoxFit.contain,
+                                    ),
+                                  )
+                                ],
+                              ),
                             ),
-                          ),
-                        ],
+                            SizedBox(
+                              height: 20,
+                            ),
+                            Container(
+                              alignment: Alignment.centerLeft,
+                              child: Text(
+                                "Shoes",
+                                style: TextStyle(
+                                    color: Colors.grey[700],
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w700),
+                              ),
+                            ),
+                            SizedBox(
+                              height: 5,
+                            ),
+                          ],
+                        ),
                       ),
-                    ],
+                    ),
                   );
                 });
           },

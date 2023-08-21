@@ -6,6 +6,7 @@ import 'package:mobileapp/provider/book_provider.dart';
 import 'package:mobileapp/view/auth/FormLogin.dart';
 
 import 'package:mobileapp/view/components/bottombar.dart';
+import 'package:mobileapp/view/home/splash_screen.dart';
 
 import 'package:provider/provider.dart';
 
@@ -35,7 +36,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: FormLogin(),
+      home: SplashScreen(),
     );
   }
 }
