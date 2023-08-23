@@ -35,6 +35,34 @@ class AuthService {
     }
     return null;
   }
+    Future<UserModel?> refreshToken({
+    required String password,
+    required String email,
+  }) async {
+    try {
+      
+      final url = Uri.parse(ApiPath.refreshToken);
+      Map<String, String> header = {
+        "Accept": "application/json",
+      };
+      final body = {
+        "password": password,
+        "email": email,
+      };
+      final respone = await http.post(url, body: body, headers: header);
+     
+      if (respone.statusCode == 200 || respone.statusCode == 201) {
+         print("==========>${respone.body}");
+        var data = jsonDecode(respone.body);
+    
+        final UserModel user = UserModel.fromJson(data['data']);
+        return user;
+      }
+    } catch (e) {
+      rethrow;
+    }
+    return null;
+  }
 
   Future<UserModel?> register({
     required String username,

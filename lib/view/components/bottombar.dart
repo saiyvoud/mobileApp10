@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:mobileapp/view/components/color.dart';
 import 'package:mobileapp/view/home/home.dart';
+import 'package:mobileapp/view/order/myorder.dart';
+import 'package:mobileapp/view/profile/profile.dart';
 
 class BottomBarWidget extends StatefulWidget {
   const BottomBarWidget({super.key});
@@ -16,8 +18,8 @@ class _BottomBarWidgetState extends State<BottomBarWidget> {
   int currentIndex = 0;
   var _children = [
     HomePage(),
-    Container(height: 200, decoration: BoxDecoration(color: Colors.green)),
-    Container(height: 200, decoration: BoxDecoration(color: Colors.indigo)),
+    MyOrder(),
+   Profile(),
   ];
   void _onTap(int index) {
     setState(() {

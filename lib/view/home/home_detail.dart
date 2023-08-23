@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mobileapp/model/book_model.dart';
 import 'package:mobileapp/view/components/color.dart';
+import 'package:mobileapp/view/payment/payment.dart';
 
 class HomeDetail extends StatefulWidget {
   final BookModel bookModel;
@@ -26,7 +27,9 @@ class _HomeDetailState extends State<HomeDetail> {
                 style: ButtonStyle(
                     backgroundColor: MaterialStateColor.resolveWith(
                         (states) => Colors.green)),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=> PaymentPage()));
+                },
                 child: Center(
                   child: Text(
                     "ຊື້ເລີຍ",

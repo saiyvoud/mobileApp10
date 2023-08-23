@@ -5,4 +5,5 @@ class ApiPath {
   static String loginPath = "${baseUrl}/user/login";
   static String registerPath = "${baseUrl}/user/register";
   static String bookPath = "${baseUrl}/book/getAll";
+  static String refreshToken = "${baseUrl}/user/refreshToken";
 }
