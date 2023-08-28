@@ -147,6 +147,7 @@ class _HomeDetailState extends State<HomeDetail> {
                 ),
               ),
             ),
+         
             SizedBox(height: 10),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10),

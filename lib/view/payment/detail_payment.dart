@@ -24,6 +24,7 @@ class DetailPayment extends StatelessWidget {
           ),
         ),
       ),
+     
       appBar: AppBar(
         backgroundColor: primaryColorWhite,
         elevation: 0,
@@ -45,6 +46,7 @@ class DetailPayment extends StatelessWidget {
         ),
         centerTitle: true,
       ),
+     
       body: SingleChildScrollView(
         child: Column(children: [
           Center(

@@ -23,7 +23,7 @@ class AuthProvider extends ChangeNotifier {
   final box = Hive.box('user');
   Future<void> validateAuth() async {
     try {
-    //await box.delete("token");
+      //await box.delete("token");
       final token = await box.get("token");
       await Future.delayed(Duration(seconds: 2));
       if (token == "" || token == null) {
@@ -47,9 +47,11 @@ class AuthProvider extends ChangeNotifier {
     );
 
     if (result!.id != null) {
+      await box.put('userId', result.id.toString());
       await box.put('token', result.token);
       final token = box.get("token");
-      print("=============>Token$token");
+      final userId = box.get("userId");
+      print("=============>Token$token userId$userId");
       _userModel = result;
       _loading = false;
       _success = true;
@@ -71,9 +73,11 @@ class AuthProvider extends ChangeNotifier {
       phone: phone.text,
     );
     if (result != null) {
-       await box.put('token', result.token);
+      await box.put('userId', result.id.toString());
+      await box.put('token', result.token);
       final token = box.get("token");
-      print("=============>Token$token");
+      final userId = box.get("userId");
+      print("=============>Token$token userId$userId");
       _userModel = result;
       _success = true;
       _loadingRegister = false;

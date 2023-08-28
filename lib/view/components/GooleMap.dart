@@ -92,7 +92,8 @@ class _GoogleMapWidgetState extends State<GoogleMapWidget> {
         ],
       ),
      
-      body: Container(
+      body: 
+      Container(
         height: 200,
         decoration: BoxDecoration(color: Colors.red),
         child: _locationData == null
@@ -110,6 +111,7 @@ class _GoogleMapWidgetState extends State<GoogleMapWidget> {
                 markers: myMarker(),
               ),
       ),
+   
     );
   }
 }

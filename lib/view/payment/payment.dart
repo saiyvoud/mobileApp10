@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:mobileapp/view/components/color.dart';
+import 'package:mobileapp/view/payment/address.dart';
 import 'package:mobileapp/view/payment/detail_payment.dart';
+import 'package:mobileapp/view/payment/update_address.dart';
 
 class PaymentPage extends StatefulWidget {
   const PaymentPage({super.key});
@@ -106,14 +108,14 @@ class _PaymentPageState extends State<PaymentPage> {
                           fontWeight: FontWeight.bold,
                           color: Colors.black)),
                   Spacer(),
-                  InkWell(
-                      onTap: () async {
-                        // final date = await pickDateTime(context);
-                        // if (date == null) return;
+                  // InkWell(
+                  //     onTap: () async {
+                  //       // final date = await pickDateTime(context);
+                  //       // if (date == null) return;
 
-                        // setState(() => dateTime = date);
-                      },
-                      child: Icon(Icons.edit, color: Colors.green)),
+                  //       // setState(() => dateTime = date);
+                  //     },
+                  //     child: Icon(Icons.edit, color: Colors.green)),
                 ],
               ),
               SizedBox(height: 10),
@@ -157,62 +159,74 @@ class _PaymentPageState extends State<PaymentPage> {
                   IconButton(
                     onPressed: () {
                       // Navigator.pushNamed(context, RouterAPI.address);
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=> UpdateAddress()));
                     },
                     icon: Icon(Icons.edit, color: Colors.green),
                   ),
                 ],
               ),
               SizedBox(height: 10),
-
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 5),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text('ບ້ານ ເມືອງ ແຂວງ',
-                        style: TextStyle(fontSize: 12, color: Colors.black)),
-                    Text(
-                        // '${addressProvider.address.village} ${addressProvider.address.district} ${addressProvider.address.province} ',
-                        "",
-                        style: TextStyle(fontSize: 12, color: Colors.black)),
-                  ],
+                InkWell(
+                  onTap: (){
+                     Navigator.push(context, MaterialPageRoute(builder: (context)=> AddressPage()));
+                  },
+                  child: Container(
+                    height: 50,
+                    width: double.infinity,
+                    decoration: BoxDecoration(color: primaryColor),
+                    child: Center(child: Text("+ ເພີມທີ່ຢູ່ຈັດສົ່ງ",style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold,color: primaryColorWhite),),),
+                  ),
                 ),
-              ),
-              SizedBox(height: 10),
-              Container(
-                height: 120,
-                decoration: BoxDecoration(color: primaryColor),
-                // child: GoogleMap(
-                //   initialCameraPosition: CameraPosition(
-                //     target: LatLng(
-                //       double.parse(
-                //         addressProvider.address.latitude!,
-                //       ),
-                //       double.parse(
-                //         addressProvider.address.longtitude!,
-                //       ),
-                //     ),
-                //     zoom: 14,
-                //   ),
-                //   markers: <Marker>[
-                //     Marker(
-                //       markerId: MarkerId('MarkerId'),
-                //       position: LatLng(
-                //         double.parse(
-                //           addressProvider.address.latitude!,
-                //         ),
-                //         double.parse(
-                //           addressProvider.address.longtitude!,
-                //         ),
-                //       ),
-                //       icon: icon!,
-                //       infoWindow: InfoWindow(
-                //           title: 'This is a Title',
-                //           snippet: 'this is a snippet'),
-                //     ),
-                //   ].toSet(),
-                // ),
-              ),
+              // Padding(
+              //   padding: const EdgeInsets.symmetric(horizontal: 5),
+              //   child: Row(
+              //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              //     children: [
+              //       Text('ບ້ານ ເມືອງ ແຂວງ',
+              //           style: TextStyle(fontSize: 12, color: Colors.black)),
+              //       Text(
+              //           // '${addressProvider.address.village} ${addressProvider.address.district} ${addressProvider.address.province} ',
+              //           "",
+              //           style: TextStyle(fontSize: 12, color: Colors.black)),
+              //     ],
+              //   ),
+              // ),
+              // SizedBox(height: 10),
+              // Container(
+              //   height: 120,
+              //   decoration: BoxDecoration(color: primaryColor),
+              //   // child: GoogleMap(
+              //   //   initialCameraPosition: CameraPosition(
+              //   //     target: LatLng(
+              //   //       double.parse(
+              //   //         addressProvider.address.latitude!,
+              //   //       ),
+              //   //       double.parse(
+              //   //         addressProvider.address.longtitude!,
+              //   //       ),
+              //   //     ),
+              //   //     zoom: 14,
+              //   //   ),
+              //   //   markers: <Marker>[
+              //   //     Marker(
+              //   //       markerId: MarkerId('MarkerId'),
+              //   //       position: LatLng(
+              //   //         double.parse(
+              //   //           addressProvider.address.latitude!,
+              //   //         ),
+              //   //         double.parse(
+              //   //           addressProvider.address.longtitude!,
+              //   //         ),
+              //   //       ),
+              //   //       icon: icon!,
+              //   //       infoWindow: InfoWindow(
+              //   //           title: 'This is a Title',
+              //   //           snippet: 'this is a snippet'),
+              //   //     ),
+              //   //   ].toSet(),
+              //   // ),
+              // ),
+            
               SizedBox(height: 10),
               Container(
                 height: 10,
@@ -228,8 +242,8 @@ class _PaymentPageState extends State<PaymentPage> {
                           fontSize: 15,
                           fontWeight: FontWeight.bold,
                           color: Colors.black)),
-                  Spacer(),
-                  Icon(Icons.edit, color: Colors.green),
+                  // Spacer(),
+                  // Icon(Icons.edit, color: Colors.green),
                 ],
               ),
               Padding(

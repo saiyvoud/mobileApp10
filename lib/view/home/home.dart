@@ -1,5 +1,6 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
+import 'package:mobileapp/view/cart/cart.dart';
 import 'package:mobileapp/view/home/home_detail.dart';
 import 'package:provider/provider.dart';
 
@@ -42,52 +43,58 @@ class _HomePageState extends State<HomePage> {
           actions: [
             Row(
               children: [
-                Stack(
-                  children: [
-                    Container(
-                      width: 40,
-                      height: 40,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(100),
-                        color: Colors.white,
+                InkWell(
+                  onTap: (){
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=> CartPage()));
+                  },
+                  child: Stack(
+                    children: [
+                      Container(
+                        width: 40,
+                        height: 40,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(100),
+                          color: Colors.white,
+                        ),
+                        child: Icon(
+                          Icons.shopping_bag,
+                          color: Color.fromARGB(255, 204, 193, 193),
+                          size: 25,
+                        ),
                       ),
-                      child: Icon(
-                        Icons.shopping_bag,
-                        color: Color.fromARGB(255, 204, 193, 193),
-                        size: 25,
-                      ),
-                    ),
-                    Positioned(
-                      top: 10,
-                      left: 22,
-                      child: Icon(
-                        Icons.circle,
-                        color: Color.fromARGB(255, 252, 123, 125),
-                        size: 6,
-                      ),
-                    )
-                  ],
+                      Positioned(
+                        top: 10,
+                        left: 22,
+                        child: Icon(
+                          Icons.circle,
+                          color: Color.fromARGB(255, 252, 123, 125),
+                          size: 6,
+                        ),
+                      )
+                    ],
+                  ),
                 ),
                 SizedBox(
                   width: 10,
                 ),
-                Container(
-                  width: 40,
-                  height: 40,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(100),
-                    color: Colors.white,
-                  ),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(100),
-                    child: Image.network(
-                      'https://img.freepik.com/free-photo/happiness-carefree-asian-female-woman-teen-wearing-headphone-listen-dance-joyful-fun-moving-moment-teen-wear-casaul-cloth-singing-move-while-laugh-smile-trendy-lifestyle-studio-shot_609648-2947.jpg?w=1380&t=st=1692003906~exp=1692004506~hmac=bd579a758ed4714e6e6e727c0ae99e8f27758ad8f881f16a98306e0e1a8e3fa4',
-                      width: 40,
-                      height: 40,
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                ),
+                // Container(
+                //   width: 40,
+                //   height: 40,
+                //   decoration: BoxDecoration(
+                //     borderRadius: BorderRadius.circular(100),
+                //     color: Colors.white,
+                //   ),
+                //   child: ClipRRect(
+                //     borderRadius: BorderRadius.circular(100),
+                //     child: Image.network(
+                //       'https://img.freepik.com/free-photo/happiness-carefree-asian-female-woman-teen-wearing-headphone-listen-dance-joyful-fun-moving-moment-teen-wear-casaul-cloth-singing-move-while-laugh-smile-trendy-lifestyle-studio-shot_609648-2947.jpg?w=1380&t=st=1692003906~exp=1692004506~hmac=bd579a758ed4714e6e6e727c0ae99e8f27758ad8f881f16a98306e0e1a8e3fa4',
+                //       width: 40,
+                //       height: 40,
+                //       fit: BoxFit.cover,
+                //     ),
+                //   ),
+                // ),
+             
               ],
             )
           ],
@@ -176,10 +183,10 @@ class _HomePageState extends State<HomePage> {
                               color: Colors.grey[600],
                               child: Stack(
                                 children: [
-                                  Image.network(
-                                    "https://wallpapercave.com/wp/wp5943533.jpg",
-                                    fit: BoxFit.contain,
-                                  ),
+                                  // Image.network(
+                                  //   "https://wallpapercave.com/wp/wp5943533.jpg",
+                                  //   fit: BoxFit.contain,
+                                  // ),
                                   Positioned(
                                     child: Image.network(
                                       // "https://shop.kicker.de/de-de/Data/Images/Big/orange-puma-evopower-vigor-4-it-halle-kids-f03.png",

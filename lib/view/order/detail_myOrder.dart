@@ -44,6 +44,7 @@ class _DetailMyOrderState extends State<DetailMyOrder> {
           ),
         ),
       ),
+     
       appBar: AppBar(
         elevation: 0,
         backgroundColor: primaryColorWhite,
