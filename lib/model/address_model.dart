@@ -9,7 +9,7 @@ class AddressModel {
   final String? express;
   final String? branch;
   final String? customer;
-  final String? phone;
+  final int? phone;
   final String? village;
   final String? district;
   final String? province;

@@ -29,6 +29,7 @@ class _AddressPageState extends State<AddressPage> {
   @override
   void initState() {
     super.initState();
+    
     getPermission();
     BitmapDescriptor.fromAssetImage(
             ImageConfiguration(size: Size(48, 48)), "assets/icons/pin.png")
@@ -243,7 +244,7 @@ class _AddressPageState extends State<AddressPage> {
               SizedBox(height: 10),
               Text("ເມືອງຢູ່"),
               TextFormField(
-                controller: branch,
+                controller: district,
                 decoration: InputDecoration(
                   hintText: "ໄຊທານີ,ຈັນທະບູລີ...",
                   border: OutlineInputBorder(),
