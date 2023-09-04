@@ -181,7 +181,7 @@ class _UpdateAddressState extends State<UpdateAddress> {
                   initialValue: address.addressModel.express,
                   onChanged: (value) {
                     setState(() {
-                      value = express.text;
+                      express.text = value;
                     });
                   },
                   decoration: InputDecoration(
@@ -199,9 +199,9 @@ class _UpdateAddressState extends State<UpdateAddress> {
                 Text("ສາຂາ"),
                 TextFormField(
                   initialValue: address.addressModel.branch,
-                    onChanged: (value) {
+                  onChanged: (value) {
                     setState(() {
-                      value = branch.text;
+                      branch.text = value;
                     });
                   },
                   decoration: InputDecoration(
@@ -221,7 +221,7 @@ class _UpdateAddressState extends State<UpdateAddress> {
                   initialValue: address.addressModel.customer,
                   onChanged: (value) {
                     setState(() {
-                      value = username.text;
+                      username.text = value;
                     });
                   },
                   decoration: InputDecoration(
@@ -239,9 +239,9 @@ class _UpdateAddressState extends State<UpdateAddress> {
                 Text("ເບີໂທຕິດຕໍ່"),
                 TextFormField(
                   initialValue: address.addressModel.phone.toString(),
-                    onChanged: (value) {
+                  onChanged: (value) {
                     setState(() {
-                      value = phone.text;
+                      phone.text = value;
                     });
                   },
                   decoration: InputDecoration(
@@ -259,9 +259,9 @@ class _UpdateAddressState extends State<UpdateAddress> {
                 Text("ບ້ານຢູ່"),
                 TextFormField(
                   initialValue: address.addressModel.village,
-                    onChanged: (value) {
+                  onChanged: (value) {
                     setState(() {
-                      value = village.text;
+                      village.text = value;
                     });
                   },
                   decoration: InputDecoration(
@@ -279,9 +279,9 @@ class _UpdateAddressState extends State<UpdateAddress> {
                 Text("ເມືອງຢູ່"),
                 TextFormField(
                   initialValue: address.addressModel.district,
-                    onChanged: (value) {
+                  onChanged: (value) {
                     setState(() {
-                      value = district.text;
+                      district.text = value;
                     });
                   },
                   decoration: InputDecoration(
@@ -301,7 +301,7 @@ class _UpdateAddressState extends State<UpdateAddress> {
                   initialValue: address.addressModel.province,
                   onChanged: (value) {
                     setState(() {
-                      value = province.text;
+                      province.text = value;
                     });
                   },
                   decoration: InputDecoration(

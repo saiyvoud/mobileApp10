@@ -67,3 +67,49 @@ class CategoryModel {
         "image": image,
       };
 }
+
+List<BooksModel> booksModelFromJson(String str) =>
+    List<BooksModel>.from(json.decode(str).map((x) => BooksModel.fromJson(x)));
+
+class BooksModel {
+  final String? id;
+  final CategoryModel? category_id;
+  final String? name;
+  final String? detail;
+  final int? amount;
+  final String? image;
+  final int? order_price;
+  final int? sale_price;
+
+  BooksModel({
+    this.id,
+    this.category_id,
+    this.name,
+    this.detail,
+    
+    this.amount,
+    this.image,
+    this.order_price,
+    this.sale_price,
+  });
+  factory BooksModel.fromJson(Map<String, dynamic> json) => BooksModel(
+        id: json['_id'],
+        category_id: CategoryModel.fromJson(json['category_id']),
+        name: json['name'],
+        detail: json['detail'],
+        amount: json['amount'],
+        image: json['image'],
+        order_price: json['order_price'],
+        sale_price: json['sale_price'],
+      );
+  Map<String, dynamic> toJson() => {
+        "id": id,
+        "category_id": category_id,
+        "name": name,
+        "detail": detail,
+        "amount": amount,
+        "image": image,
+        "order_price": order_price,
+        "sale_price": sale_price,
+      };
+}

@@ -4,6 +4,7 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:mobileapp/provider/address_provider.dart';
 import 'package:mobileapp/provider/auth_provider.dart';
 import 'package:mobileapp/provider/book_provider.dart';
+import 'package:mobileapp/provider/order_provider.dart';
 import 'package:mobileapp/view/auth/FormLogin.dart';
 
 import 'package:mobileapp/view/components/bottombar.dart';
@@ -25,6 +26,7 @@ Future<void> main() async {
         ChangeNotifierProvider(create: (_) => AuthProvider()),
         ChangeNotifierProvider(create: (_) => BookProvider()),
         ChangeNotifierProvider(create: (_) => AddressProvider()),
+        ChangeNotifierProvider(create: (_) => OrderProvider()),
       ],
       child: const MyApp(),
     ),

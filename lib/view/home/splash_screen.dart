@@ -23,7 +23,7 @@ class _SplashScreenState extends State<SplashScreen> {
         body: Consumer<AuthProvider>(
           builder: (context, auth, child) {
             if (auth.success == true) {
-              return BottomBarWidget();
+              return FormLogin();
             } else if (auth.success == false) {
               return FormLogin();
             }

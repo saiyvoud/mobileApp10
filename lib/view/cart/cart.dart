@@ -57,7 +57,9 @@ class CartPage extends StatelessWidget {
                 SizedBox(height: 5),
                 InkWell(
                   onTap: (){
-                    Navigator.push(context, MaterialPageRoute(builder: (context)=> PaymentPage()));
+                    // Navigator.push(context, MaterialPageRoute(builder: (context)=> PaymentPage(
+                    //   bo
+                    // )));
                   },
                   child: Container(
                     height: 50,

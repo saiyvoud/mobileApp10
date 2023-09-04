@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:mobileapp/model/address_model.dart';
@@ -12,12 +14,65 @@ class AddressProvider extends ChangeNotifier {
   get success => _success;
   AddressModel get addressModel => _addressModel!;
 
+
+  // Future<CroppedFile?> cropImage({required File imageFile}) async {
+  //   try {
+  //     CroppedFile? croppedFile = await ImageCropper().cropImage(
+  //       sourcePath: imageFile.path,
+  //       aspectRatioPresets: [
+  //         CropAspectRatioPreset.square,
+  //         CropAspectRatioPreset.ratio3x2,
+  //         CropAspectRatioPreset.original,
+  //         CropAspectRatioPreset.ratio4x3,
+  //         CropAspectRatioPreset.ratio16x9
+  //       ],
+  //       uiSettings: [
+  //         AndroidUiSettings(
+  //             toolbarTitle: 'Cropper',
+  //             toolbarColor: primaryColor,
+  //             toolbarWidgetColor: Colors.white,
+  //             initAspectRatio: CropAspectRatioPreset.original,
+  //             lockAspectRatio: false),
+  //         IOSUiSettings(
+  //           title: 'Cropper',
+  //         ),
+  //         WebUiSettings(
+  //           context: context,
+  //         ),
+  //       ],
+  //     );
+  //     return croppedFile;
+  //   } catch (e) {
+  //     print('Faild to crop image: ${e}');
+  //     return null;
+  //   }
+  // }
+
+
+  // Future<File?> pickCamera() async {
+  //   try {
+  //     var xImage = await ImagePicker().pickImage(
+  //       source: ImageSource.camera,
+  //     );
+  //     if (xImage == null) {}
+  //     var image = File(xImage!.path);
+  //     return image;
+  //   } catch (e) {
+  //     print('Faild to pick image: ${e}');
+  //     return null;
+  //   }
+  // }
+
+
+
+
   Future<DateTime?> pickDateTime(context) => showDatePicker(
         context: context,
         initialDate: DateTime.now(),
         firstDate: DateTime(2000),
         lastDate: DateTime(2025),
       );
+  
   Future<void> insertAddress({
     required String express,
     required String branch,

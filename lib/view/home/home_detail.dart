@@ -28,7 +28,9 @@ class _HomeDetailState extends State<HomeDetail> {
                     backgroundColor: MaterialStateColor.resolveWith(
                         (states) => Colors.green)),
                 onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context)=> PaymentPage()));
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=> PaymentPage(
+                    bookModel: widget.bookModel,
+                  )));
                 },
                 child: Center(
                   child: Text(

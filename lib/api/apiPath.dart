@@ -10,4 +10,7 @@ class ApiPath {
   static String getAddressByUserPath = "${baseUrl}/address/getByUser/";
   static String insertAddressPath = "${baseUrl}/address/insert";
   static String updateAddressPath = "${baseUrl}/address/update/";
+  // ----------- order ------------------
+  static String orderPath = "${baseUrl}/order/insert";
+  static String getOrderPath = "${baseUrl}/order/getByUser";
 }
