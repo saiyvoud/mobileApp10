@@ -12,5 +12,5 @@ class ApiPath {
   static String updateAddressPath = "${baseUrl}/address/update/";
   // ----------- order ------------------
   static String orderPath = "${baseUrl}/order/insert";
-  static String getOrderPath = "${baseUrl}/order/getByUser";
+  static String getOrderByUserPath = "${baseUrl}/order/getByUser/";
 }

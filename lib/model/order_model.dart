@@ -15,7 +15,7 @@ class OrderModel {
   final int? totalPrice;
   final String? bill;
   final String? time;
-
+  final String? status;
   OrderModel({
     this.id,
     this.books = const [],
@@ -24,6 +24,7 @@ class OrderModel {
     this.totalPrice,
     this.bill,
     this.time,
+    this.status,
   });
   factory OrderModel.fromJson(Map<String, dynamic> json) => OrderModel(
         id: json['_id'],
@@ -33,6 +34,7 @@ class OrderModel {
         totalPrice: json['totalPrice'],
         bill: json['bill'],
         time: json['time'],
+        status: json['status'],
       );
   Map<String, dynamic> toJson() => {
         "id": id,
@@ -42,5 +44,6 @@ class OrderModel {
         "totalPrice": totalPrice,
         "bill": bill,
         "time": time,
+        "status": status,
       };
 }

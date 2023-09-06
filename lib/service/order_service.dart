@@ -9,6 +9,30 @@ import 'package:mobileapp/model/order_model.dart';
 
 class OrderService {
   final box = Hive.box('user');
+  
+  Future<List<dynamic>?> getByUser() async {
+    try {
+      final userId = await box.get("userId");
+      final url = await Uri.parse(ApiPath.getOrderByUserPath + userId);
+      final token = await box.get("token");
+      Map<String, String> header = {
+        "Accept": "application/json",
+        "Authorization": "Bearer ${token}"
+      };
+      final response = await http.get(url, headers: header);
+
+      var data = jsonDecode(response.body);
+      if (data['status'] == true) {
+         print(response.body);
+         final result = data['data'];
+        return result;
+      }
+    } catch (e) {
+      print(e);
+    }
+    return null;
+  }
+
   Future<OrderModel?> insertOrder({
     required File image,
     required String address_id,
@@ -49,14 +73,13 @@ class OrderService {
       // }];
       // }
 
-     
       // request.fields.addAll({"books": _arry.toString()});
       final streamedResponse = await request.send();
       final response = await http.Response.fromStream(streamedResponse);
       print(response.body);
       if (response.statusCode == 201 || response.statusCode == 200) {
         var data = json.decode(response.body);
-      
+
         final OrderModel order = OrderModel.fromJson(data['data']);
         return order;
       }
