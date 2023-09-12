@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -17,7 +18,7 @@ Future<void> main() async {
   WidgetsFlutterBinding();
   // FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   await Hive.initFlutter();
-
+  await Firebase.initializeApp();
   // await Hive.deleteBoxFromDisk('shopping_box');
   await Hive.openBox('user');
   runApp(

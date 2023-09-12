@@ -1,4 +1,4 @@
-package com.mobileapp.course
+package com.selbuybook.app
 
 import io.flutter.embedding.android.FlutterActivity
 

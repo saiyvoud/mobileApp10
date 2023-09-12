@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "793070086087",
+    "project_id": "selbuybook",
+    "storage_bucket": "selbuybook.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:793070086087:android:d32413aa0ea50165715be2",
+        "android_client_info": {
+          "package_name": "com.selbuybook.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBQ6MjLQD_X6Jfk4WWPl6CQiATadEXsm9A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -12,6 +12,23 @@ class HomeDetail extends StatefulWidget {
 }
 
 class _HomeDetailState extends State<HomeDetail> {
+  int amount = 1;
+
+  void addAmount() {
+    setState(() {
+      amount++;
+    });
+  }
+
+  void removeAmount() {
+    if (amount == 1) {
+    } else {
+      setState(() {
+        amount--;
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,9 +45,12 @@ class _HomeDetailState extends State<HomeDetail> {
                     backgroundColor: MaterialStateColor.resolveWith(
                         (states) => Colors.green)),
                 onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context)=> PaymentPage(
-                    bookModel: widget.bookModel,
-                  )));
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => PaymentPage(
+                                bookModel: widget.bookModel,
+                              )));
                 },
                 child: Center(
                   child: Text(
@@ -128,20 +148,21 @@ class _HomeDetailState extends State<HomeDetail> {
                                     color: primaryColorBlack,
                                   )),
                               Positioned(
-                                top: 2,right: 3,
-                                child: Container(
-                                height: 20,
-                                width: 20,
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(20),
-                                    color: primaryColorRed),
-                                child: Center(
-                                  child: Text(
-                                    "1",
-                                    style: TextStyle(color: Colors.white),
-                                  ),
-                                ),
-                              ))
+                                  top: 2,
+                                  right: 3,
+                                  child: Container(
+                                    height: 20,
+                                    width: 20,
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(20),
+                                        color: primaryColorRed),
+                                    child: Center(
+                                      child: Text(
+                                        "1",
+                                        style: TextStyle(color: Colors.white),
+                                      ),
+                                    ),
+                                  ))
                             ],
                           ),
                         )),
@@ -149,7 +170,6 @@ class _HomeDetailState extends State<HomeDetail> {
                 ),
               ),
             ),
-         
             SizedBox(height: 10),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10),
@@ -210,20 +230,30 @@ class _HomeDetailState extends State<HomeDetail> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Container(
-                            height: 40,
-                            width: 100,
-                            decoration: BoxDecoration(
-                                border: Border.all(color: primaryColorGrey)),
-                            child: Center(child: Icon(Icons.add, size: 25)),
+                          InkWell(
+                            onTap: (){
+                              addAmount();
+                            },
+                            child: Container(
+                              height: 40,
+                              width: 100,
+                              decoration: BoxDecoration(
+                                  border: Border.all(color: primaryColorGrey)),
+                              child: Center(child: Icon(Icons.add, size: 25)),
+                            ),
                           ),
-                          Text("1"),
-                          Container(
-                            height: 40,
-                            width: 100,
-                            decoration: BoxDecoration(
-                                border: Border.all(color: primaryColorGrey)),
-                            child: Center(child: Icon(Icons.remove, size: 25)),
+                          Text(amount.toString()),
+                          InkWell(
+                            onTap: (){
+                              removeAmount();
+                            },
+                            child: Container(
+                              height: 40,
+                              width: 100,
+                              decoration: BoxDecoration(
+                                  border: Border.all(color: primaryColorGrey)),
+                              child: Center(child: Icon(Icons.remove, size: 25)),
+                            ),
                           ),
                         ],
                       ),
