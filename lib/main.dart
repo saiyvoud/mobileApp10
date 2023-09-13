@@ -5,10 +5,8 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:mobileapp/provider/address_provider.dart';
 import 'package:mobileapp/provider/auth_provider.dart';
 import 'package:mobileapp/provider/book_provider.dart';
+import 'package:mobileapp/provider/cart_provider.dart';
 import 'package:mobileapp/provider/order_provider.dart';
-import 'package:mobileapp/view/auth/FormLogin.dart';
-
-import 'package:mobileapp/view/components/bottombar.dart';
 import 'package:mobileapp/view/home/splash_screen.dart';
 
 import 'package:provider/provider.dart';
@@ -28,6 +26,7 @@ Future<void> main() async {
         ChangeNotifierProvider(create: (_) => BookProvider()),
         ChangeNotifierProvider(create: (_) => AddressProvider()),
         ChangeNotifierProvider(create: (_) => OrderProvider()),
+        ChangeNotifierProvider(create: (_)=> CartProvider()),
       ],
       child: const MyApp(),
     ),
