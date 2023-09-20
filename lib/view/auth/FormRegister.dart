@@ -146,6 +146,7 @@ class _FormRegisterState extends State<FormRegister> {
                         },
                       ),
                       SizedBox(height: 20),
+                     
                       Container(
                         height: 50,
                         child: TextButton(
@@ -191,6 +192,7 @@ class _FormRegisterState extends State<FormRegister> {
                               ),
                             )),
                       )
+                   
                     ],
                   ),
                 ),

@@ -60,20 +60,6 @@ class OrderService {
       request.fields['books'] = covertBooks;
       final file = await http.MultipartFile.fromPath('bill', image.path);
       request.files.add(file);
-
-      // for (int i = 0; i < books.length; i++) {
-      // var _book = [{
-      //   "category_id": books['category_id'],
-      //   "name": books['name'],
-      //   "detail": books['detail'],
-      //   "amount": books['amount'].toString(),
-      //   "order_price": books['order_price'].toString(),
-      //   "sale_price": books['sale_price'].toString(),
-      //   "image": books['image'].toString()
-      // }];
-      // }
-
-      // request.fields.addAll({"books": _arry.toString()});
       final streamedResponse = await request.send();
       final response = await http.Response.fromStream(streamedResponse);
       print(response.body);
@@ -88,4 +74,5 @@ class OrderService {
     }
     return null;
   }
+
 }

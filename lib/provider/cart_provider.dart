@@ -39,6 +39,81 @@ class CartProvider extends ChangeNotifier {
     }
   }
 
+  Future<void> deleteCart({
+    required String id,
+  }) async {
+    try {
+      firestore.collection("cart").doc(id).get().then((value1) {
+        value1.reference.delete().then((value2) {
+          if (value1.data()!.isEmpty) {
+            _success = true;
+            _loading = false;
+            notifyListeners();
+          } else {
+            getCarts();
+            _success = true;
+            _loading = false;
+            notifyListeners();
+          }
+        }).catchError((onError) {
+          _success = false;
+          _loading = false;
+          notifyListeners();
+        });
+      });
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  Future<void> addAmountCart({
+    required String id,
+  }) async {
+    _loading = true;
+    try {
+      firestore.collection("cart").doc(id).get().then((value) {
+        value.reference.update({
+          "amount": value.data()!['amount'] + 1,
+        }).then((value) {
+          getCarts();
+          _success = true;
+          _loading = false;
+          notifyListeners();
+        }).catchError((onError) {
+          _success = false;
+          _loading = false;
+          notifyListeners();
+        });
+      });
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  Future<void> removeAmountCart({
+    required String id,
+  }) async {
+    _loading = true;
+    try {
+      firestore.collection("cart").doc(id).get().then((value) {
+        value.reference.update({
+          "amount": value.data()!['amount'] - 1,
+        }).then((value) {
+          getCarts();
+          _success = true;
+          _loading = false;
+          notifyListeners();
+        }).catchError((onError) {
+          _success = false;
+          _loading = false;
+          notifyListeners();
+        });
+      });
+    } catch (e) {
+      rethrow;
+    }
+  }
+
   Future<void> remove({
     required BookModel books,
     required int amount,
@@ -93,12 +168,19 @@ class CartProvider extends ChangeNotifier {
       } else {
         print("=========>${_cartId.length}");
         await firestore.collection("cart").doc(books.id.toString()).set({
+          "id": books.id,
           "userId": userId,
           "amount": amount,
           "name": books.name,
           "detail": books.detail,
           "image": books.image.toString(),
-          // "category_id": books.category_id,
+          "category_id": FieldValue.arrayUnion([
+            {
+              "id": books.category_id!.id,
+              "name": books.category_id!.name,
+              "image": books.category_id!.image
+            }
+          ]),
           "order_price": books.order_price,
           "sale_price": books.sale_price
         }).then((value) {

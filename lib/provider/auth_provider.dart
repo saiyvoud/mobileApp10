@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:mobileapp/model/user_model.dart';
@@ -13,6 +15,7 @@ class AuthProvider extends ChangeNotifier {
   final formKeyRegister = GlobalKey<FormState>();
   AuthService authService = AuthService();
   UserModel _userModel = UserModel();
+
   bool? _loading;
   bool? _loadingRegister;
   bool? _success;
@@ -21,6 +24,51 @@ class AuthProvider extends ChangeNotifier {
   get success => _success;
   UserModel get userModel => _userModel;
   final box = Hive.box('user');
+  Future<void> updateProfileImage({required File filename}) async {
+    _loading = true;
+    final result = await authService.updateProfileImage(
+       // oldImage: userModel.profile.toString(),
+         newImage: filename);
+    if (result != null) {
+      _userModel = result;
+      _loading = false;
+      notifyListeners();
+    } else {
+      _loading = false;
+      notifyListeners();
+    }
+  }
+
+  Future<void> updateProfile() async {
+    _loading = true;
+    final result = await authService.updateProfile(
+      username:
+          username.text.isEmpty ? userModel.username.toString() : username.text,
+      phone: phone.text.isEmpty ? userModel.phone.toString() : phone.text,
+    );
+    if (result != null) {
+      _userModel = result;
+      _loading = false;
+      notifyListeners();
+    } else {
+      _loading = false;
+      notifyListeners();
+    }
+  }
+
+  Future<void> getProfile() async {
+    _loading = true;
+    final result = await authService.getProfile();
+    if (result != null) {
+      _userModel = result;
+      _loading = false;
+      notifyListeners();
+    } else {
+      _loading = false;
+      notifyListeners();
+    }
+  }
+
   Future<void> validateAuth() async {
     try {
       //await box.delete("token");
