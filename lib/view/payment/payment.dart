@@ -110,7 +110,6 @@ class _PaymentPageState extends State<PaymentPage> {
                             ),
                     ),
                   ),
-                
                 ],
               ),
               actions: [
@@ -171,7 +170,6 @@ class _PaymentPageState extends State<PaymentPage> {
                     ),
                   ),
                 ),
-             
               ],
             );
           });
@@ -182,8 +180,11 @@ class _PaymentPageState extends State<PaymentPage> {
   Widget build(BuildContext context) {
     return Consumer<AddressProvider>(builder: (context, address, child) {
       if (address.loadingAddress == true) {
-        return Center(child: CircularProgressIndicator());
+        return Scaffold(
+          body: Center(child: CircularProgressIndicator()),
+        );
       }
+     
       return Scaffold(
         backgroundColor: primaryColorWhite,
         appBar: AppBar(
@@ -207,18 +208,20 @@ class _PaymentPageState extends State<PaymentPage> {
           ),
           centerTitle: true,
         ),
-        bottomNavigationBar: Padding(
+        bottomNavigationBar: address.success == false? SizedBox() :  Padding(
           padding: const EdgeInsets.all(8.0),
           child: GestureDetector(
             onTap: () {
-             // showPayment(context, address.addressModel.id.toString());
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => DetailPayment(
-                    address_id: address.addressModel.id.toString(),
-                    bookModel: widget.bookModel,
-                    time:dateTime.toString(),
-                    totalPrice: widget.bookModel.sale_price.toString(),
-                  )));
+              // showPayment(context, address.addressModel.id.toString());
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => DetailPayment(
+                            address_id: address.addressModel.id.toString(),
+                            bookModel: widget.bookModel,
+                            time: dateTime.toString(),
+                            totalPrice: widget.bookModel.sale_price.toString(),
+                          )));
             },
             child: Container(
               height: 50,
@@ -241,30 +244,33 @@ class _PaymentPageState extends State<PaymentPage> {
             child: Column(
               children: [
                 SizedBox(height: 10),
-
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 5),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text('ຊື່ ແລະ ນາມສະກຸນ',
-                          style: TextStyle(fontSize: 12, color: Colors.black)),
-                      Text('${address.addressModel.customer}',
-                          style: TextStyle(fontSize: 12, color: Colors.black)),
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 5),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text('ເບີໂທຕິດຕໍ່',
-                          style: TextStyle(fontSize: 12, color: Colors.black)),
-                      Text('+856 ${address.addressModel.phone} ',
-                          style: TextStyle(fontSize: 12, color: Colors.black)),
-                    ],
-                  ),
+              address.success == false ? SizedBox():  Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 5),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text('ຊື່ ແລະ ນາມສະກຸນ',
+                              style: TextStyle(fontSize: 12, color: Colors.black)),
+                          Text('${address.addressModel.customer}',
+                              style: TextStyle(fontSize: 12, color: Colors.black)),
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 5),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text('ເບີໂທຕິດຕໍ່',
+                              style: TextStyle(fontSize: 12, color: Colors.black)),
+                          Text('+856 ${address.addressModel.phone} ',
+                              style: TextStyle(fontSize: 12, color: Colors.black)),
+                        ],
+                      ),
+                    ),
+                  ],
                 ),
                 SizedBox(height: 10),
                 Container(
@@ -330,7 +336,7 @@ class _PaymentPageState extends State<PaymentPage> {
                             fontWeight: FontWeight.bold,
                             color: Colors.black)),
                     Spacer(),
-                    IconButton(
+                   address.success ==false ? SizedBox(): IconButton(
                       onPressed: () {
                         // Navigator.pushNamed(context, RouterAPI.address);
                         Navigator.push(
@@ -343,8 +349,9 @@ class _PaymentPageState extends State<PaymentPage> {
                   ],
                 ),
                 SizedBox(height: 10),
-                address.addressModel.id == null
-                    ? InkWell(
+                address.success == false
+                    ? 
+                    InkWell(
                         onTap: () {
                           Navigator.push(
                               context,
@@ -382,12 +389,12 @@ class _PaymentPageState extends State<PaymentPage> {
                         ),
                       ),
                 SizedBox(height: 10),
-                Container(
+               address.success == false ? SizedBox():  Container(
                   height: 120,
                   decoration: BoxDecoration(color: primaryColor),
-                  child: address.addressModel.latitude == null
+                  child: address.success == false
                       ? Center(
-                          child: CircularProgressIndicator(),
+                          child: SizedBox(),
                         )
                       : GoogleMap(
                           initialCameraPosition: CameraPosition(

@@ -8,6 +8,37 @@ import 'package:mobileapp/model/user_model.dart';
 
 class AuthService {
   final box = Hive.box('user');
+  Future<int?> changePassword({
+    required String oldPassword,
+    required String newPassword,
+  }) async {
+    try {
+      final userId = await box.get("userId");
+      final url = Uri.parse(ApiPath.changePasswordPath + userId);
+      final token = await box.get("token");
+      Map<String, String> header = {
+        "Accept": "application/json",
+        "Authorization": "Bearer ${token}"
+      };
+      final body = {
+        "oldPassword": oldPassword,
+        "newPassword": newPassword,
+      };
+      final respone = await http.put(url, body: body, headers: header);
+      print("===========>${respone.body}");
+      var data = jsonDecode(respone.body);
+      if (data["status"] == true) {
+        return 1;
+      }else{
+         return null;
+      }
+     
+    } catch (e) {
+      rethrow;
+    }
+   
+  }
+
   Future<UserModel?> updateProfileImage({
     //required String oldImage,
     required File newImage,
@@ -32,7 +63,6 @@ class AuthService {
       print(response.body);
       if (response.statusCode == 201 || response.statusCode == 200) {
         var data = json.decode(response.body);
-
         final UserModel user = UserModel.fromJson(data['data']);
         return user;
       }

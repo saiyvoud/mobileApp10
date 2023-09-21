@@ -149,11 +149,14 @@ Future<void> updateAddress({
   Future<void> getByUser() async {
     _loadingAddress = true;
     final result = await addressService.getByUser();
+   
     if (result != null) {
       _addressModel = result;
       _loadingAddress = false;
       notifyListeners();
     } else {
+       print(result);
+      _success = false;
       _loadingAddress = false;
       notifyListeners();
     }

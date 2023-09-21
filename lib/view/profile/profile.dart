@@ -4,6 +4,7 @@ import 'package:mobileapp/provider/auth_provider.dart';
 import 'package:mobileapp/view/auth/FormLogin.dart';
 import 'package:mobileapp/view/components/color.dart';
 import 'package:mobileapp/view/components/data.dart';
+import 'package:mobileapp/view/profile/edit_password.dart';
 import 'package:mobileapp/view/profile/edit_profile.dart';
 import 'package:provider/provider.dart';
 
@@ -107,6 +108,11 @@ class _ProfileState extends State<Profile> {
                                   builder: (context) => EditProfile(
                                       image: auth.userModel.profile.toString())));
                         } else if (index == 1) {
+                           Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => EditPassword(
+                                      image: auth.userModel.profile.toString())));
                         } else if (index == 2) {
                           Navigator.pushAndRemoveUntil(
                               context,

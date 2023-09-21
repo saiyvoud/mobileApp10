@@ -5,6 +5,7 @@ class ApiPath {
   static String getProfilePath = "${baseUrl}/user/geOne/";
   static String updateProfilePath = "${baseUrl}/user/updateProfile/";
   static String updateProfileImagePath = "${baseUrl}/user/updateProfileImage/";
+  static String changePasswordPath = "${baseUrl}/user/changePassword/";
   static String loginPath = "${baseUrl}/user/login";
 
   static String registerPath = "${baseUrl}/user/register";

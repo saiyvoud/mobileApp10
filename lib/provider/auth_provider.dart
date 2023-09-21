@@ -9,10 +9,13 @@ class AuthProvider extends ChangeNotifier {
   TextEditingController username = TextEditingController();
   TextEditingController email = TextEditingController();
   TextEditingController password = TextEditingController();
+  TextEditingController oldPassword = TextEditingController();
+  TextEditingController newPassword = TextEditingController();
   TextEditingController comfirmPassword = TextEditingController();
   TextEditingController phone = TextEditingController();
   final formKey = GlobalKey<FormState>();
   final formKeyRegister = GlobalKey<FormState>();
+    final formKeyChangePassword = GlobalKey<FormState>();
   AuthService authService = AuthService();
   UserModel _userModel = UserModel();
 
@@ -27,13 +30,30 @@ class AuthProvider extends ChangeNotifier {
   Future<void> updateProfileImage({required File filename}) async {
     _loading = true;
     final result = await authService.updateProfileImage(
-       // oldImage: userModel.profile.toString(),
-         newImage: filename);
+        // oldImage: userModel.profile.toString(),
+        newImage: filename);
     if (result != null) {
       _userModel = result;
       _loading = false;
       notifyListeners();
     } else {
+      _loading = false;
+      notifyListeners();
+    }
+  }
+
+  Future<void> changePassword() async {
+    _loading = true;
+    final result = await authService.changePassword(
+      oldPassword: oldPassword.text,
+      newPassword: newPassword.text,
+    );
+    if (result != null) {
+      _success = true;
+      _loading = false;
+      notifyListeners();
+    } else {
+      _success = false;
       _loading = false;
       notifyListeners();
     }

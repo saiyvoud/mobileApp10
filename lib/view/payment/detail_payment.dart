@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:mobileapp/model/book_model.dart';
 import 'package:mobileapp/provider/order_provider.dart';
+import 'package:mobileapp/view/components/bottombar.dart';
 import 'package:mobileapp/view/components/color.dart';
 import 'package:provider/provider.dart';
 
@@ -73,8 +74,16 @@ class _DetailPaymentState extends State<DetailPayment> {
                   animType: AnimType.bottomSlide,
                   title: 'ສຳເລັດ',
                   desc: 'ສ້າງອໍເດີສຳເລັດ',
-                  btnCancelOnPress: () {},
-                  btnOkOnPress: () {},
+                  btnCancelOnPress: () {
+                     
+                  },
+                  btnOkOnPress: () {
+                      Navigator.pushAndRemoveUntil(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => BottomBarWidget()),
+                        (route) => false);
+                  },
                 )..show();
               } else {
                 AwesomeDialog(
@@ -94,7 +103,7 @@ class _DetailPaymentState extends State<DetailPayment> {
                 height: 50,
                 decoration: BoxDecoration(color: primaryColor),
                 child: Center(
-                  child: Text(
+                  child: order.loadingOrder == true ? CircularProgressIndicator(): Text(
                     "ຢືນຢັນ",
                     style: TextStyle(
                         fontSize: 18,

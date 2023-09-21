@@ -211,7 +211,7 @@ class _PaymentCartState extends State<PaymentCart> {
           ),
           centerTitle: true,
         ),
-        bottomNavigationBar: Padding(
+        bottomNavigationBar: address.success == false ? SizedBox(): Padding(
           padding: const EdgeInsets.all(8.0),
           child: GestureDetector(
             onTap: () {
@@ -248,29 +248,33 @@ class _PaymentCartState extends State<PaymentCart> {
               children: [
                 SizedBox(height: 10),
 
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 5),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text('ຊື່ ແລະ ນາມສະກຸນ',
-                          style: TextStyle(fontSize: 12, color: Colors.black)),
-                      Text('${address.addressModel.customer}',
-                          style: TextStyle(fontSize: 12, color: Colors.black)),
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 5),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text('ເບີໂທຕິດຕໍ່',
-                          style: TextStyle(fontSize: 12, color: Colors.black)),
-                      Text('+856 ${address.addressModel.phone} ',
-                          style: TextStyle(fontSize: 12, color: Colors.black)),
-                    ],
-                  ),
+              address.success ==false ? SizedBox():  Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 5),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text('ຊື່ ແລະ ນາມສະກຸນ',
+                              style: TextStyle(fontSize: 12, color: Colors.black)),
+                          Text('${address.addressModel.customer}',
+                              style: TextStyle(fontSize: 12, color: Colors.black)),
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 5),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text('ເບີໂທຕິດຕໍ່',
+                              style: TextStyle(fontSize: 12, color: Colors.black)),
+                          Text('+856 ${address.addressModel.phone} ',
+                              style: TextStyle(fontSize: 12, color: Colors.black)),
+                        ],
+                      ),
+                    ),
+                  ],
                 ),
                 SizedBox(height: 10),
                 Container(
@@ -336,7 +340,7 @@ class _PaymentCartState extends State<PaymentCart> {
                             fontWeight: FontWeight.bold,
                             color: Colors.black)),
                     Spacer(),
-                    IconButton(
+                  address.success == false ? SizedBox():  IconButton(
                       onPressed: () {
                         // Navigator.pushNamed(context, RouterAPI.address);
                         Navigator.push(
@@ -349,7 +353,7 @@ class _PaymentCartState extends State<PaymentCart> {
                   ],
                 ),
                 SizedBox(height: 10),
-                address.addressModel.id == null
+              address.success == false 
                     ? InkWell(
                         onTap: () {
                           Navigator.push(
@@ -388,7 +392,7 @@ class _PaymentCartState extends State<PaymentCart> {
                         ),
                       ),
                 SizedBox(height: 10),
-                Container(
+              address.success == false ? SizedBox():  Container(
                   height: 120,
                   decoration: BoxDecoration(color: primaryColor),
                   child: address.addressModel.latitude == null

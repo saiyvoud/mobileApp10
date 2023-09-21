@@ -45,6 +45,7 @@ class OrderService {
       final token = await box.get("token");
       Map<String, String> header = {
         "Accept": "application/json",
+        "Content-Type": "multipart/form-data",
         "Authorization": "Bearer ${token}"
       };
       //  print("=========>: "+books);

@@ -109,13 +109,15 @@ class AddressService {
       };
       final respone = await http.get(url, headers: header);
       print(respone.body);
-      if (respone.statusCode == 201 || respone.statusCode == 200) {
-        var data = jsonDecode(respone.body);
+         var data = jsonDecode(respone.body);
+      if (data["data"] != null) {
         final AddressModel address = AddressModel.fromJson(data['data']);
         return address;
+      }else{
+        return null;
       }
     } catch (e) {
-      rethrow;
+     print(e);
     }
     return null;
   }
